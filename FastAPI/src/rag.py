@@ -3,7 +3,7 @@ from langchain_core.runnables import RunnablePassthrough,RunnableParallel
 from decouple import config
 from operator import itemgetter
 from langchain_openai import ChatOpenAI
-from src.Qdrant import vectorstore
+from Qdrant import vectorstore
 
 model=ChatOpenAI(
     model="gpt-5.4",

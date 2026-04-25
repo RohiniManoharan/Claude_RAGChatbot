@@ -6,11 +6,7 @@ from langchain_openai import ChatOpenAI
 from Qdrant import get_vectorstore
 from langchain_groq import ChatGroq
 
-model_old = ChatOpenAI(
-    model="gpt-4o",
-    temperature=0.7,
-    openai_api_key=config("OPENAI_API_KEY"),
-)
+
 
 model = ChatGroq(
     model="llama-3.3-70b-versatile",

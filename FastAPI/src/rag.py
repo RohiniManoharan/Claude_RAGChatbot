@@ -4,11 +4,18 @@ from decouple import config
 from operator import itemgetter
 from langchain_openai import ChatOpenAI
 from Qdrant import get_vectorstore
+from langchain_groq import ChatGroq
 
-model = ChatOpenAI(
+model_old = ChatOpenAI(
     model="gpt-4o",
     temperature=0.7,
     openai_api_key=config("OPENAI_API_KEY"),
+)
+
+model = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    temperature=0.7,
+    groq_api_key=config("GROQ_API_KEY"),
 )
 
 prompt_template = """

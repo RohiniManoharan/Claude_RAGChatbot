@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-from src.rag import return_answer
-from src.Qdrant import upload_website_to_collection
+from rag import return_answer
+from Qdrant import upload_website_to_collection
 from pydantic import BaseModel
  
 from fastapi.middleware.cors import CORSMiddleware

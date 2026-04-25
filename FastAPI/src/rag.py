@@ -2,7 +2,7 @@ from langchain_core.prompts.chat import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough, RunnableParallel
 from decouple import config
 from operator import itemgetter
-from langchain_openai import ChatOpenAI
+
 from Qdrant import get_vectorstore
 from langchain_groq import ChatGroq
 

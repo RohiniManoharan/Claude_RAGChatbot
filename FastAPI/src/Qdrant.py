@@ -1,27 +1,30 @@
 from langchain_qdrant import QdrantVectorStore
-from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import WebBaseLoader
 from qdrant_client import QdrantClient
 from qdrant_client.http.models import VectorParams, Distance
-from decouple import config
-from langchain_community.embeddings import HuggingFaceEmbeddings
-quadrant_api_key = config("QDRANT_API_KEY")
-quadrant_url = config("QDRANT_URL")
+import os
+
+quadrant_api_key = os.environ.get("QDRANT_API_KEY")
+quadrant_url = os.environ.get("QDRANT_URL")
 collection_name = "website_AI"
 
-# Client is created once but not used until a function is called
 client = QdrantClient(
     url=quadrant_url,
     api_key=quadrant_api_key,
     timeout=30
 )
 
-def create_collection(collection_name):
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+
+def create_collection():
     client.create_collection(
         collection_name=collection_name,
         vectors_config=VectorParams(
-            size=1536,
+            size=384,
             distance=Distance.COSINE
         )
     )
@@ -30,10 +33,7 @@ def get_vectorstore():
     return QdrantVectorStore(
         client=client,
         collection_name=collection_name,
-        embedding=OpenAIEmbeddings(
-            model="text-embedding-ada-002",
-            api_key=config("GROQ_API_KEY")
-        )
+        embedding=embeddings
     )
 
 text_splitter = RecursiveCharacterTextSplitter(

@@ -17,15 +17,19 @@ client= QdrantClient(
 )
 
 def create_collection(collection_name):
+ 
     client.create_collection(collection_name=collection_name,
                              vectors_config=VectorParams(
                                  size=1536,
                                  distance=Distance.COSINE))
+ 
+
     
    # print (f"connections {collection_name} created succesfully")
 
 
-create_collection(collection_name)
+    #create_collection(collection_name)
+ 
 
 vectorstore = QdrantVectorStore(
     client=client,

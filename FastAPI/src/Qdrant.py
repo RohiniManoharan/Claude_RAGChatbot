@@ -5,7 +5,7 @@ from langchain_community.document_loaders import WebBaseLoader
 from qdrant_client import QdrantClient
 from qdrant_client.http.models import VectorParams, Distance
 from decouple import config
-
+from langchain_community.embeddings import HuggingFaceEmbeddings
 quadrant_api_key = config("QDRANT_API_KEY")
 quadrant_url = config("QDRANT_URL")
 collection_name = "website_AI"

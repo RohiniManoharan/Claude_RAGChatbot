@@ -32,7 +32,7 @@ def get_vectorstore():
         collection_name=collection_name,
         embedding=OpenAIEmbeddings(
             model="text-embedding-ada-002",
-            api_key=config("GROQAI_API_KEY")
+            api_key=config("GROQ_API_KEY")
         )
     )
 

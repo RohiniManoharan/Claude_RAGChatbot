@@ -18,7 +18,7 @@ chatapp= FastAPI (
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://claude-rag-chatbot.vercel.app/",
+    "https://claude-rag-chatbot-pi9xkgj3s-rohinimanoharans-projects.vercel.app",
 ]
 
 class Qmessage(BaseModel):

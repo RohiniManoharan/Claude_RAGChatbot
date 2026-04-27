@@ -1,5 +1,5 @@
 from langchain_qdrant import QdrantVectorStore
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import WebBaseLoader
 from qdrant_client import QdrantClient
@@ -16,15 +16,16 @@ client = QdrantClient(
     timeout=30
 )
 
-embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+embeddings = OpenAIEmbeddings(
+    model="text-embedding-ada-002",
+    api_key=os.environ.get("OPENAI_API_KEY")
 )
 
 def create_collection():
     client.create_collection(
         collection_name=collection_name,
         vectors_config=VectorParams(
-            size=384,
+            size=1536,
             distance=Distance.COSINE
         )
     )

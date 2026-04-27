@@ -18,7 +18,7 @@ chatapp= FastAPI (
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://claude-rag-chatbot-pi9xkgj3s-rohinimanoharans-projects.vercel.app",
+   
 ]
 
 class Qmessage(BaseModel):
@@ -31,6 +31,7 @@ chatapp.add_middleware(
     CORSMiddleware,
     allow_origins=origins,  # your frontend
     allow_credentials=True,
+    allow_origin_regex="https://.*\.vercel\.app",
     allow_methods=["*"],
     allow_headers=["*"],
 )
